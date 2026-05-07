@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotação do Dólar</title>
+
+    <link rel="stylesheet" href="scr/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1 id="moeda">💵 Cotações</h1>
+
+        <div class="card buy-card">
+            <p class="titulo">Valor de Compra</p>
+            <p id="buy" class="valor">R$ --</p>
+        </div>
+
+        <div class="card sell-card">
+            <p class="titulo">Valor de Venda</p>
+            <p id="sell" class="valor">R$ --</p>
+        </div>
+
+        <button onclick="obterMoedas()">
+            Atualizar Cotação
+        </button>
+
+        <p id="status"></p>
+    </div>
+
+    <script src="scr/script.js"></script>
+</body>
+</html>
