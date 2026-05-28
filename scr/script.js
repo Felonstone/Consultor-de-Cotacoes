@@ -2,24 +2,25 @@ const moedaPrincipal = document.getElementById("moeda");
 
 const buy = document.getElementById("buy");
 const sell = document.getElementById("sell");
+
 const statusText = document.getElementById("status");
 
 const selectMoeda = document.getElementById("selectMoeda");
 
 async function obterMoedas() {
-
+    console.log("Atualizado!")
     const moedaSelecionada = selectMoeda.value;
 
     const servidor = "https://economia.awesomeapi.com.br/last/";
 
-    statusText.innerHTML = "Buscando cotação...";
+    statusText.innerHTML = "🔄 Atualizando cotação...";
 
     try {
 
         const response = await fetch(servidor + moedaSelecionada);
 
         if (!response.ok) {
-            throw new Error("Erro ao buscar API");
+            throw new Error("Erro API");
         }
 
         const json = await response.json();
@@ -28,21 +29,41 @@ async function obterMoedas() {
 
         const dados = json[chave];
 
-        buy.innerHTML = `R$ ${parseFloat(dados.high).toFixed(2)}`;
+        sell.innerHTML = parseFloat(dados.ask).toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+        minimumFractionDigits: 3,
+        maximumFractionDigits: 3
+        });
 
-        sell.innerHTML = `R$ ${parseFloat(dados.low).toFixed(2)}`;
+        buy.innerHTML = parseFloat(dados.bid).toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+            minimumFractionDigits: 3,
+            maximumFractionDigits: 3
+            });
 
-        moedaPrincipal.innerHTML = `💵 ${dados.name}`;
+        // sell.innerHTML =
+        //     Number(dados.ask).toLocaleString("pt-BR", {
+        //         style: "currency",
+        //         currency: "BRL"
+        //     });
 
-        statusText.innerHTML = "Cotação atualizada ✔";
+        moedaPrincipal.innerHTML = `💱 ${dados.name}`;
+
+        statusText.innerHTML =
+            `✔ Atualizado às ${new Date().toLocaleTimeString()}`;
 
     } catch (error) {
 
         console.error(error);
 
-        statusText.innerHTML = "Erro ao carregar cotação ❌";
+        statusText.innerHTML = "❌ Erro ao buscar cotação";
     }
 }
 
-/* Carrega automaticamente */
+/* Atualização automática */
+setInterval(obterMoedas, 30000);
+
+/* Primeira execução */
 obterMoedas();

@@ -3,47 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cotação do Dólar</title>
+    <title>Consultor de Cotações - Dólar</title>
 
     <link rel="stylesheet" href="scr/style.css">
+
+    <!-- Ícones -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
+    <div class="background"></div>
+
     <header class="header">
+
         <div class="logo">
-            💱 Consultor de Cotações
+            <i class="fa-solid fa-wallet"></i>
+            Consultor de Cotações
         </div>
 
-        <div class="menu">
+        <div class="top-actions">
+
             <select id="selectMoeda">
-                <option value="USD-BRL">Dólar</option>
-                <option value="EUR-BRL">Euro</option>
-                <option value="GBP-BRL">Libra</option>
-                <option value="BTC-BRL">Bitcoin</option>
+                <option value="USD-BRL">🇺🇸 Dólar</option>
+                <option value="EUR-BRL">🇪🇺 Euro</option>
+                <option value="GBP-BRL">🇬🇧 Libra</option>
+                <option value="BTC-BRL">₿ Bitcoin</option>
+                <option value="ARS-BRL">🇦🇷 Peso Argentino</option>
             </select>
 
             <button onclick="obterMoedas()">
-                Atualizar
+                <i class="fa-solid fa-rotate"></i>
             </button>
+
         </div>
+
     </header>
 
-    <div class="container">
-        <h1 id="moeda">💵 Cotações</h1>
+    <main class="container">
 
-        <div class="card buy-card">
-            <p class="titulo">Valor de Compra</p>
-            <p id="buy" class="valor">R$ --</p>
+        <div class="title-area">
+            <h1 id="moeda">💵 Dólar Comercial</h1>
+            <p id="status">Sistema iniciado</p>
         </div>
 
-        <div class="card sell-card">
-            <p class="titulo">Valor de Venda</p>
-            <p id="sell" class="valor">R$ --</p>
+        <div class="cards">
+
+            <div class="card buy-card">
+
+                <div class="card-top">
+                    <p>Compra</p>
+                    <i class="fa-solid fa-arrow-trend-up"></i>
+                </div>
+
+                <h2 id="buy">R$ --</h2>
+
+            </div>
+
+            <div class="card sell-card">
+
+                <div class="card-top">
+                    <p>Venda</p>
+                    <i class="fa-solid fa-arrow-trend-down"></i>
+                </div>
+
+                <h2 id="sell">R$ --</h2>
+
+            </div>
+
         </div>
 
-        <p id="status"></p>
-    </div>
+        <div class="footer-card">
+
+            <div>
+                <p>Atualização automática</p>
+                <span>30 segundos</span>
+            </div>
+            
+            <button class="sem-estilo" onclick="obterMoedas()">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            </button>
+
+        </div>
+
+    </main>
 
     <script src="scr/script.js"></script>
+
 </body>
 </html>
