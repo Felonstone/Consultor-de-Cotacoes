@@ -4,17 +4,14 @@ const buy = document.getElementById("buy");
 const sell = document.getElementById("sell");
 const statusText = document.getElementById("status");
 
-const localMoeda = "BRL";
-
-const dolar = "USD";
-const euro = "EUR";
-
-let moedaSelecionada = dolar + "-" + localMoeda;
+const selectMoeda = document.getElementById("selectMoeda");
 
 async function obterMoedas() {
 
+    const moedaSelecionada = selectMoeda.value;
+
     const servidor = "https://economia.awesomeapi.com.br/last/";
-    
+
     statusText.innerHTML = "Buscando cotação...";
 
     try {
@@ -27,19 +24,17 @@ async function obterMoedas() {
 
         const json = await response.json();
 
-        console.log(json);
-
-        // Remove o hífen: USD-BRL -> USDBRL
         const chave = moedaSelecionada.replace("-", "");
 
         const dados = json[chave];
 
         buy.innerHTML = `R$ ${parseFloat(dados.high).toFixed(2)}`;
+
         sell.innerHTML = `R$ ${parseFloat(dados.low).toFixed(2)}`;
 
-        moedaPrincipal.innerHTML = dados.name;
+        moedaPrincipal.innerHTML = `💵 ${dados.name}`;
 
-        statusText.innerHTML = "Cotação atualizada com sucesso ✔";
+        statusText.innerHTML = "Cotação atualizada ✔";
 
     } catch (error) {
 
@@ -48,3 +43,6 @@ async function obterMoedas() {
         statusText.innerHTML = "Erro ao carregar cotação ❌";
     }
 }
+
+/* Carrega automaticamente */
+obterMoedas();

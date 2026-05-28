@@ -9,6 +9,25 @@
 </head>
 <body>
 
+    <header class="header">
+        <div class="logo">
+            💱 Consultor de Cotações
+        </div>
+
+        <div class="menu">
+            <select id="selectMoeda">
+                <option value="USD-BRL">Dólar</option>
+                <option value="EUR-BRL">Euro</option>
+                <option value="GBP-BRL">Libra</option>
+                <option value="BTC-BRL">Bitcoin</option>
+            </select>
+
+            <button onclick="obterMoedas()">
+                Atualizar
+            </button>
+        </div>
+    </header>
+
     <div class="container">
         <h1 id="moeda">💵 Cotações</h1>
 
@@ -21,10 +40,6 @@
             <p class="titulo">Valor de Venda</p>
             <p id="sell" class="valor">R$ --</p>
         </div>
-
-        <button onclick="obterMoedas()">
-            Atualizar Cotação
-        </button>
 
         <p id="status"></p>
     </div>
