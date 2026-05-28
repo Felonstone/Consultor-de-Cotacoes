@@ -63,7 +63,7 @@ async function obterMoedas() {
 }
 
 /* Atualização automática */
-setInterval(obterMoedas, 30000);
+setInterval(obterMoedas, 10000);
 
 /* Primeira execução */
 obterMoedas();
